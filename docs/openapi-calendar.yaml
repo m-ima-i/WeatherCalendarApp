@@ -1,0 +1,209 @@
+openapi: 3.0.3
+info:
+  title: WeatherCalendarApp - Calendar API
+  description: Google Calendar API v3 (used by WeatherCalendarApp)
+  version: 1.0.0
+servers:
+  - url: https://www.googleapis.com
+    description: Google APIs production
+tags:
+  - name: Calendar
+    description: Google Calendar API v3
+security:
+  - bearerAuth: []
+paths:
+  /calendar/v3/calendars/{calendarId}/events:
+    parameters:
+      - name: calendarId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: カレンダーID（例 primary）
+    get:
+      tags:
+        - Calendar
+      summary: 予定一覧取得
+      operationId: getEvents
+      parameters:
+        - name: timeMin
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: 取得開始時刻（RFC3339）
+        - name: timeMax
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: 取得終了時刻（RFC3339）
+        - name: singleEvents
+          in: query
+          required: true
+          schema:
+            type: boolean
+          description: 繰り返し予定を展開するか
+        - name: orderBy
+          in: query
+          required: false
+          schema:
+            type: string
+          description: 並び順（例 startTime）
+        - name: maxResults
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: 最大件数
+        - name: pageToken
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ページネーショントークン
+      responses:
+        '200':
+          description: 予定一覧
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalendarResRemote'
+    post:
+      tags:
+        - Calendar
+      summary: 予定作成
+      operationId: createEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventReqRemote'
+      responses:
+        '200':
+          description: 作成された予定
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventRemote'
+  /calendar/v3/calendars/{calendarId}/events/{eventId}:
+    parameters:
+      - name: calendarId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: カレンダーID
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: 予定ID
+    put:
+      tags:
+        - Calendar
+      summary: 予定更新
+      operationId: updateEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEventReqRemote'
+      responses:
+        '200':
+          description: 更新された予定
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventRemote'
+    delete:
+      tags:
+        - Calendar
+      summary: 予定削除
+      operationId: deleteEvent
+      responses:
+        '204':
+          description: 削除完了（本文なし）
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2 access token
+      description: Google OAuth2 access token を Authorization ヘッダに `Bearer <token>` で付与
+  schemas:
+    CalendarResRemote:
+      type: object
+      properties:
+        items:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/EventRemote'
+        nextPageToken:
+          type: string
+          nullable: true
+    EventRemote:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        summary:
+          type: string
+          nullable: true
+        start:
+          allOf:
+            - $ref: '#/components/schemas/EventDateTime'
+          nullable: true
+        end:
+          allOf:
+            - $ref: '#/components/schemas/EventDateTime'
+          nullable: true
+        colorId:
+          type: string
+          nullable: true
+    EventDateTime:
+      type: object
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          nullable: true
+        date:
+          type: string
+          format: date
+          nullable: true
+    CreateEventReqRemote:
+      type: object
+      required: [start, end]
+      properties:
+        summary:
+          type: string
+          nullable: true
+        start:
+          $ref: '#/components/schemas/EventDateTimeRemote'
+        end:
+          $ref: '#/components/schemas/EventDateTimeRemote'
+        colorId:
+          type: string
+          nullable: true
+    EventDateTimeRemote:
+      type: object
+      properties:
+        dateTime:
+          type: string
+          format: date-time
+          nullable: true
+        date:
+          type: string
+          format: date
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true

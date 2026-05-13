@@ -1,0 +1,164 @@
+openapi: 3.0.3
+info:
+  title: WeatherCalendarApp - Weather API
+  description: OpenWeather One Call API 3.0 (used by WeatherCalendarApp)
+  version: 1.0.0
+servers:
+  - url: https://api.openweathermap.org
+    description: OpenWeather production
+tags:
+  - name: Weather
+    description: OpenWeather One Call API 3.0
+paths:
+  /data/3.0/onecall:
+    get:
+      tags:
+        - Weather
+      summary: One Call API 3.0 (current / hourly / daily forecast)
+      operationId: getOneCallWeather
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+          description: 緯度
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: number
+            format: double
+          description: 経度
+        - name: appid
+          in: query
+          required: true
+          schema:
+            type: string
+          description: OpenWeather APIキー
+        - name: exclude
+          in: query
+          required: true
+          schema:
+            type: string
+            default: minutely,alerts
+          description: 除外パート（カンマ区切り）
+        - name: units
+          in: query
+          required: true
+          schema:
+            type: string
+            default: metric
+          description: 単位系（metric=摂氏）
+        - name: lang
+          in: query
+          required: true
+          schema:
+            type: string
+            default: ja
+          description: 言語コード
+      responses:
+        '200':
+          description: 天気情報
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherRemote'
+components:
+  schemas:
+    WeatherRemote:
+      type: object
+      required: [lat, lon, timezone, current, hourly, daily]
+      properties:
+        lat:
+          type: number
+          format: double
+        lon:
+          type: number
+          format: double
+        timezone:
+          type: string
+        current:
+          $ref: '#/components/schemas/CurrentRemote'
+        hourly:
+          type: array
+          items:
+            $ref: '#/components/schemas/HourlyRemote'
+        daily:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyRemote'
+    CurrentRemote:
+      type: object
+      required: [dt, temp, feels_like, humidity, wind_speed, weather]
+      properties:
+        dt:
+          type: integer
+          format: int64
+        temp:
+          type: number
+          format: double
+        feels_like:
+          type: number
+          format: double
+        humidity:
+          type: integer
+        wind_speed:
+          type: number
+          format: double
+        weather:
+          type: array
+          items:
+            $ref: '#/components/schemas/WeatherDescriptionRemote'
+    HourlyRemote:
+      type: object
+      required: [dt, temp, pop, weather]
+      properties:
+        dt:
+          type: integer
+          format: int64
+        temp:
+          type: number
+          format: double
+        pop:
+          type: number
+          format: double
+        weather:
+          type: array
+          items:
+            $ref: '#/components/schemas/WeatherDescriptionRemote'
+    DailyRemote:
+      type: object
+      required: [dt, temp, pop, weather]
+      properties:
+        dt:
+          type: integer
+          format: int64
+        temp:
+          $ref: '#/components/schemas/TempRemote'
+        pop:
+          type: number
+          format: double
+        weather:
+          type: array
+          items:
+            $ref: '#/components/schemas/WeatherDescriptionRemote'
+    WeatherDescriptionRemote:
+      type: object
+      required: [id, icon]
+      properties:
+        id:
+          type: integer
+        icon:
+          type: string
+    TempRemote:
+      type: object
+      required: [min, max]
+      properties:
+        min:
+          type: number
+          format: double
+        max:
+          type: number
+          format: double
