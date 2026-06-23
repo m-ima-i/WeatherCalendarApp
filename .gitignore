@@ -53,6 +53,9 @@ lint/tmp/
 Thumbs.db
 desktop.ini
 
+# ===== iOS (ローカル開発のみ・公開リポジトリから除外) =====
+iOS/
+
 # ===== Claude Code =====
 .claude/
 CLAUDE.md
