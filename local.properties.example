@@ -1,0 +1,7 @@
+# OpenWeatherMap One Call API 3.0 key
+# Obtain from: https://openweathermap.org/api/one-call-3
+ONE_CALL_API_KEY=<your-openweathermap-api-key>
+
+# Google Places API key
+# Obtain from: https://developers.google.com/maps/documentation/places/web-service/get-api-key
+PLACES_API_KEY=<your-google-places-api-key>

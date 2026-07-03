@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">WCA</string>
+
+    <!-- 天気画面 -->
+    <string name="weather_feels_like">体感温度</string>
+    <string name="weather_pop">降水確率</string>
+    <string name="weather_humidity">湿度</string>
+    <string name="weather_wind_speed">風速</string>
+
+
+    <!-- カレンダー -->
+    <string name="calendar_login_prompt">Google連携をすると予定を表示できます</string>
+    <string name="calendar_login_button">Google連携</string>
+
+    <!-- カレンダー 失敗状態 -->
+    <string name="calendar_failure_api_unauthorized">Google連携の有効期限が切れました\nカレンダー機能を引き続き使う場合は\n再度Google連携をしてください</string>
+    <string name="calendar_failure_api_quota_exceeded">クォータを超過しました</string>
+    <string name="calendar_failure_api_network_error">ネットワークエラーにより\nカレンダーの取得に失敗しました</string>
+    <string name="calendar_failure_api_server_error">サーバーエラーにより\nカレンダーの取得に失敗しました</string>
+    <string name="calendar_failure_api_unknown">カレンダーの取得に失敗しました</string>
+    <string name="calendar_failure_button_reauth">再連携</string>
+    <string name="calendar_failure_button_refresh">リフレッシュ</string>
+    <string name="calendar_failure_banner_update_failed">カレンダーの更新に失敗しました</string>
+
+    <!-- 直近の予定 -->
+    <string name="upcoming_events_title">半年以内の予定</string>
+    <string name="no_upcoming_events">半年以内の予定はありません</string>
+    <string name="widget_upcoming_events_title">30日以内の予定</string>
+    <string name="widget_no_upcoming_events">30日以内の予定はありません</string>
+    <string name="widget_calendar_fetch_failed">予定の取得に失敗しました</string>
+
+    <!-- Dialog: 位置情報権限 -->
+    <string name="dialog_location_permission_body">天気機能を使うには位置情報の権限が必要です\nウィジェット機能を使う場合は「常に許可」にしてください</string>
+    <string name="dialog_location_permission_confirm">設定</string>
+    <string name="dialog_location_permission_close">閉じる</string>
+
+    <!-- Dialog: GPS（SettingsClient Resolution が利用不可な端末向けフォールバック） -->
+    <string name="dialog_gps_body">現在地の天気を取得するために\nGPSをONにしてください</string>
+    <string name="dialog_gps_confirm">設定</string>
+    <string name="dialog_gps_close">閉じる</string>
+
+    <!-- 天気画面 失敗状態（位置情報/GPS 由来） -->
+    <string name="weather_failure_location_off">現在地の天気を取得するためには\n位置情報の権限をONにしてください。</string>
+    <string name="weather_failure_gps_off">現在地の天気を取得するためには\nGPSをONにしてください。</string>
+    <string name="weather_failure_location_and_gps_off">現在地の天気を取得するためには\n位置情報の権限・GPSをONにしてください。</string>
+    <string name="weather_failure_button_location_settings">位置情報の設定</string>
+    <string name="weather_failure_button_gps_settings">GPSの設定</string>
+    <!-- API エラー由来 -->
+    <string name="weather_failure_api_unauthorized">APIキーの認証エラーにより\n天気の取得に失敗しました</string>
+    <string name="weather_failure_api_quota_exceeded">APIリクエスト上限超過により\n天気の取得に失敗しました</string>
+    <string name="weather_failure_api_network_error">ネットワークエラーにより\n天気の取得に失敗しました</string>
+    <string name="weather_failure_api_server_error">サーバーエラーにより\n天気の取得に失敗しました</string>
+    <string name="weather_failure_api_unknown">天気の取得に失敗しました</string>
+
+    <!-- Place 検索 失敗状態 (画面内 UI) -->
+    <string name="place_failure_api_unauthorized">APIキーの認証エラーにより\n地名の検索に失敗しました</string>
+    <string name="place_failure_api_quota_exceeded">APIリクエスト上限超過により\n地名の検索に失敗しました</string>
+    <string name="place_failure_api_network_error">ネットワークエラーにより\n地名の検索に失敗しました</string>
+    <string name="place_failure_api_server_error">サーバーエラーにより\n地名の検索に失敗しました</string>
+    <string name="place_failure_api_unknown">地名の検索に失敗しました</string>
+
+    <!-- 天気失敗バナー (weather!=null 時、CurrentWeatherCard 上部) -->
+    <string name="weather_failure_banner_update_failed">天気の更新に失敗しました</string>
+    <string name="weather_failure_banner_permission_gps">位置情報の取得に失敗しました</string>
+    <string name="weather_failure_banner_refresh_button">リフレッシュ</string>
+    <string name="weather_failure_banner_settings_button">設定</string>
+
+    <!-- Toast: 失敗通知 -->
+    <string name="toast_calendar_failure">予定の取得に失敗しました</string>
+    <string name="toast_calendar_quota_exceeded">クォータを超過しました</string>
+    <string name="toast_holiday_failure">祝日の取得に失敗しました</string>
+    <string name="toast_event_create_failure">予定の作成に失敗しました</string>
+    <string name="toast_event_edit_failure">予定の編集に失敗しました</string>
+    <string name="toast_event_delete_failure">予定の削除に失敗しました</string>
+    <string name="toast_google_auth_failure">Google連携に失敗しました</string>
+    <string name="toast_widget_opacity_changed">ウィジェットの透明度を変更しました</string>
+
+    <!-- Dialog: ログアウト -->
+    <string name="dialog_logout_body">Google連携を解除しますか？</string>
+    <string name="dialog_logout_confirm">はい</string>
+    <string name="dialog_logout_dismiss">いいえ</string>
+
+    <!-- Dialog: 時間矛盾エラー -->
+    <string name="dialog_time_conflict_body">終了時間は開始時間より\n早い時間にしてください</string>
+    <string name="dialog_time_conflict_confirm">閉じる</string>
+
+    <!-- Dialog: 予定削除 -->
+    <string name="dialog_delete_event_body">\"%1$s\"を削除しますか？</string>
+    <string name="dialog_delete_event_confirm">はい</string>
+    <string name="dialog_delete_event_dismiss">いいえ</string>
+
+    <!-- ウィジェット -->
+    <string name="widget_weather_mini_description">現在の天気をコンパクトに表示します</string>
+    <string name="widget_weather_small_description">現在の天気情報を表示します</string>
+    <string name="widget_weather_calendar_description">天気と今日の予定を表示します</string>
+
+</resources>
