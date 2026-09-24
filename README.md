@@ -10,7 +10,7 @@
 
 ### 主な機能
 
-- **天気予報**: OpenWeatherMap One Call API 3.0 による現在地・登録地点の天気（時間ごと/日ごと）
+- **天気予報**: OpenWeatherMap One Call API 4.0 による現在地・登録地点の天気（時間ごと/日ごと）
 - **Google カレンダー連携**: 予定の取得・追加・編集（Google アカウント連携）
 - **ホームウィジェット**: 3 サイズ提供
   - Mini (2x1): 天気コンパクト表示
@@ -73,13 +73,13 @@ cd WeatherCalendarApp
 ルートディレクトリの `local.properties.example` をコピーして `local.properties` を作成し、各値を入力してください。
 
 ```properties
-ONE_CALL_API_KEY=<OpenWeatherMap One Call API 3.0 の API キー>
+ONE_CALL_API_KEY=<OpenWeatherMap One Call API 4.0 の API キー>
 PLACES_API_KEY=<Google Places API キー>
 ```
 
 ##### API キー取得方法
 
-- **OpenWeatherMap One Call API 3.0**: <https://openweathermap.org/api/one-call-3> でアカウント作成 → API key 発行（One Call API 3.0 のサブスクリプション登録が必要、無料枠あり）
+- **OpenWeatherMap One Call API 4.0**: <https://openweathermap.org/api/one-call-4> でアカウント作成 → API key 発行（One Call API 4.0 のサブスクリプション登録が必要、無料枠あり）
 - **Google Places API**: <https://developers.google.com/maps/documentation/places/web-service/get-api-key> の手順で Google Cloud プロジェクトを作成し API キー発行
 
 #### 3. Google カレンダー連携の設定
@@ -133,7 +133,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
 
 ### 주요 기능
 
-- **날씨 예보**: OpenWeatherMap One Call API 3.0 기반 현재 위치 및 등록 지점 날씨 (시간별 / 일별)
+- **날씨 예보**: OpenWeatherMap One Call API 4.0 기반 현재 위치 및 등록 지점 날씨 (시간별 / 일별)
 - **Google 캘린더 연동**: 일정 조회 · 추가 · 편집 (Google 계정 연동)
 - **홈 위젯**: 3 가지 사이즈 제공
   - Mini (2x1): 날씨 컴팩트 표시
@@ -196,13 +196,13 @@ cd WeatherCalendarApp
 루트 디렉토리의 `local.properties.example` 을 복사하여 `local.properties` 를 만들고 각 값을 입력하세요.
 
 ```properties
-ONE_CALL_API_KEY=<OpenWeatherMap One Call API 3.0 키>
+ONE_CALL_API_KEY=<OpenWeatherMap One Call API 4.0 키>
 PLACES_API_KEY=<Google Places API 키>
 ```
 
 ##### API 키 발급 방법
 
-- **OpenWeatherMap One Call API 3.0**: <https://openweathermap.org/api/one-call-3> 에서 계정 생성 후 API key 발급 (One Call API 3.0 구독 등록 필요, 무료 한도 있음)
+- **OpenWeatherMap One Call API 4.0**: <https://openweathermap.org/api/one-call-4> 에서 계정 생성 후 API key 발급 (One Call API 4.0 구독 등록 필요, 무료 한도 있음)
 - **Google Places API**: <https://developers.google.com/maps/documentation/places/web-service/get-api-key> 의 절차로 Google Cloud 프로젝트 생성 및 API 키 발급
 
 #### 3. Google 캘린더 연동 설정
@@ -256,7 +256,7 @@ An Android app that shows weather forecasts and Google Calendar in a single scre
 
 ### Features
 
-- **Weather forecast**: hourly/daily forecasts for current location and registered places via OpenWeatherMap One Call API 3.0
+- **Weather forecast**: hourly/daily forecasts for current location and registered places via OpenWeatherMap One Call API 4.0
 - **Google Calendar integration**: read, add, and edit events via the Google account integration
 - **Home widgets**: three sizes
   - Mini (2x1): compact weather
@@ -319,13 +319,13 @@ cd WeatherCalendarApp
 Copy `local.properties.example` at the project root to `local.properties` and fill in the values.
 
 ```properties
-ONE_CALL_API_KEY=<OpenWeatherMap One Call API 3.0 key>
+ONE_CALL_API_KEY=<OpenWeatherMap One Call API 4.0 key>
 PLACES_API_KEY=<Google Places API key>
 ```
 
 ##### How to obtain API keys
 
-- **OpenWeatherMap One Call API 3.0**: create an account at <https://openweathermap.org/api/one-call-3> and issue an API key (requires subscribing to One Call API 3.0; free tier available)
+- **OpenWeatherMap One Call API 4.0**: create an account at <https://openweathermap.org/api/one-call-4> and issue an API key (requires subscribing to One Call API 4.0; free tier available)
 - **Google Places API**: follow the steps at <https://developers.google.com/maps/documentation/places/web-service/get-api-key> to create a Google Cloud project and issue the API key
 
 #### 3. Set up Google Calendar integration

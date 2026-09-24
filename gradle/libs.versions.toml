@@ -12,7 +12,6 @@ activityCompose = "1.9.3"
 composeBom = "2024.12.01"
 places = "4.1.0"
 retrofit = "2.11.0"
-okhttp = "4.12.0"
 hilt = "2.56"
 ksp = "2.0.21-1.0.25"
 playServicesAuth = "21.3.0"
@@ -51,7 +50,6 @@ kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-cor
 places = { module = "com.google.android.libraries.places:places", version.ref = "places" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
-okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "playServicesAuth" }

@@ -17,7 +17,6 @@ class WeatherReqRemoteMapperTest {
         // Assert
         assertEquals(35.6762, remote.lat, 0.0001)
         assertEquals(139.6503, remote.lon, 0.0001)
-        assertEquals("minutely,alerts", remote.exclude)
         assertEquals("metric", remote.units)
         assertEquals("ja", remote.lang)
     }

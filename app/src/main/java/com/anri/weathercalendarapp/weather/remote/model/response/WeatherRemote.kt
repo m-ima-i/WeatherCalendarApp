@@ -8,9 +8,42 @@ import com.anri.weathercalendarapp.weather.domain.model.response.Weather
 import com.anri.weathercalendarapp.weather.domain.model.response.WeatherDescription
 import com.google.gson.annotations.SerializedName
 
+/**
+ * One Call API 4.0 の GET data/4.0/onecall/current のレスポンス。
+ * 3.0 の current オブジェクトは 4.0 では1件だけのdata配列になった。
+ */
+data class CurrentResponseRemote(
+    val timezone: String,
+    val data: List<CurrentRemote>
+)
+
+/**
+ * One Call API 4.0 の GET data/4.0/onecall/timeline/1h のレスポンス。
+ * 1レスポンス最大20件で、続きはnext（前はprev）の有無で判断する。
+ */
+data class HourlyResponseRemote(
+    val timezone: String,
+    val data: List<HourlyRemote>,
+    val next: String? = null,
+    val prev: String? = null
+)
+
+/**
+ * One Call API 4.0 の GET data/4.0/onecall/timeline/1day のレスポンス。
+ * 1レスポンス最大10件。
+ */
+data class DailyResponseRemote(
+    val timezone: String,
+    val data: List<DailyRemote>,
+    val next: String? = null,
+    val prev: String? = null
+)
+
+/**
+ * 3エンドポイントのレスポンスを1件にまとめた内部モデル。
+ * 4.0 ではAPIが分割されたため、ドメイン変換の入口としてこの型に集約する。
+ */
 data class WeatherRemote(
-    val lat: Double,
-    val lon: Double,
     val timezone: String,
     val current: CurrentRemote,
     val hourly: List<HourlyRemote>,

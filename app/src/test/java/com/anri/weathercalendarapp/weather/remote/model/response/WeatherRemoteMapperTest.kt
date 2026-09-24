@@ -9,8 +9,6 @@ class WeatherRemoteMapperTest {
     fun `WeatherRemote_toDomain - 正常変換`() {
         // Arrange
         val remote = WeatherRemote(
-            lat = 35.6762,
-            lon = 139.6503,
             timezone = "Asia/Tokyo",
             current = CurrentRemote(
                 dt = 1700000000L,

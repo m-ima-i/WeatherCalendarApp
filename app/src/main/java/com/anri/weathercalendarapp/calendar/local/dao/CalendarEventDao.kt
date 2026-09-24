@@ -6,7 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.anri.weathercalendarapp.calendar.local.entity.CalendarEventEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CalendarEventDao {
@@ -25,11 +24,7 @@ interface CalendarEventDao {
         insertAll(events)
     }
 
-    /** ウィジェット用: ローカルに保存された全予定を取得 */
-    @Query("SELECT * FROM calendar_events")
-    fun getAll(): Flow<List<CalendarEventEntity>>
-
-    /** ウィジェット用: ローカルに保存された全予定を一度だけ取得（Flow 経由しない suspend 版） */
+    /** ウィジェット用: ローカルに保存された全予定を一度だけ取得 */
     @Query("SELECT * FROM calendar_events")
     suspend fun getAllOnce(): List<CalendarEventEntity>
 }

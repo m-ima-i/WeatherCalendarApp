@@ -1,7 +1,6 @@
 package com.anri.weathercalendarapp.calendar.data.datasource
 
 import com.anri.weathercalendarapp.calendar.domain.model.response.CalendarEvent
-import kotlinx.coroutines.flow.Flow
 
 interface CalendarLocalDataSource {
 
