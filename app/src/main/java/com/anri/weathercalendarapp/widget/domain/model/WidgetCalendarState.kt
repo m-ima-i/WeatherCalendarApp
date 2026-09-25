@@ -2,7 +2,7 @@ package com.anri.weathercalendarapp.widget.domain.model
 
 import com.anri.weathercalendarapp.calendar.domain.model.response.CalendarEvent
 
-/** 中ウィジェットのカレンダー部分の3状態 */
+/** 中ウィジェット・カバー画面ウィジェットのカレンダー部分の3状態 */
 sealed class WidgetCalendarState {
 
     /** Google 未連携（accountEmail なし） */

@@ -21,7 +21,7 @@ import java.time.format.DateTimeFormatter
 
 /**
  * 日付変更時（00:00）に実行されるWorker。
- * カレンダーAPIから今日以降の最新7件を取得しRoomに保存、Widgetを更新する。
+ * カレンダーAPIから今日以降の最新10件を取得しRoomに保存、Widgetを更新する。
  */
 @HiltWorker
 class MidnightWidgetWorker @AssistedInject constructor(
@@ -37,7 +37,7 @@ class MidnightWidgetWorker @AssistedInject constructor(
 
     companion object {
         const val WORK_NAME = "midnight_widget_update"
-        private const val MAX_RESULTS = 7
+        private const val MAX_RESULTS = 10
         private const val RANGE_DAYS = 30L
     }
 

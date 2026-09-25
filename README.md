@@ -6,7 +6,7 @@
 
 ## 日本語
 
-天気予報と Google カレンダーを 1 画面で確認できる Android アプリ。ホーム画面ウィジェット 3 種類で現在地の天気と直近の予定をひと目で把握でき、お気に入り地点の天気もアプリ内で確認できます。
+天気予報と Google カレンダーを 1 画面で確認できる Android アプリ。ホーム画面ウィジェット 3 種類と Galaxy Z Flip のカバー画面ウィジェットで現在地の天気と直近の予定をひと目で把握でき、お気に入り地点の天気もアプリ内で確認できます。
 
 ### 主な機能
 
@@ -16,6 +16,7 @@
   - Mini (2x1): 天気コンパクト表示
   - Small (2x2): 天気のみ
   - Medium (4x2): 天気＋カレンダー
+- **カバー画面ウィジェット**: Galaxy Z Flip のカバー画面（Flex Window）に天気と 30 日以内の予定（最大 10 件）を表示（Galaxy Z Flip7 / One UI 8.5 で動作確認）
 - **位置情報**: GPS による現在地取得 + Google Places の地名検索によるお気に入り地点登録
 
 ### 技術スタック
@@ -128,7 +129,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
 
 ## 한국어
 
-날씨 예보와 Google 캘린더를 한 화면에서 확인할 수 있는 Android 앱입니다. 3 가지 홈 화면 위젯으로 현재 위치의 날씨와 가까운 일정을 한눈에 파악할 수 있으며, 즐겨찾기 지점의 날씨도 앱에서 확인할 수 있습니다.
+날씨 예보와 Google 캘린더를 한 화면에서 확인할 수 있는 Android 앱입니다. 3 가지 홈 화면 위젯과 Galaxy Z Flip 커버 화면 위젯으로 현재 위치의 날씨와 가까운 일정을 한눈에 파악할 수 있으며, 즐겨찾기 지점의 날씨도 앱에서 확인할 수 있습니다.
 
 ### 주요 기능
 
@@ -138,6 +139,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
   - Mini (2x1): 날씨 컴팩트 표시
   - Small (2x2): 날씨만 표시
   - Medium (4x2): 날씨 + 캘린더
+- **커버 화면 위젯**: Galaxy Z Flip 의 커버 화면 (Flex Window) 에 날씨와 30 일 이내 일정 (최대 10 건) 표시 (Galaxy Z Flip7 / One UI 8.5 에서 동작 확인)
 - **위치 정보**: GPS 기반 현재 위치 + Google Places 지명 검색을 통한 즐겨찾기 지점 등록
 
 ### 기술 스택
@@ -250,7 +252,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
 
 ## English
 
-An Android app that shows weather forecasts and Google Calendar in a single screen. It ships three home-screen widgets so you can glance at the weather for your current location alongside upcoming events, and you can also check the weather for your favorite places in the app.
+An Android app that shows weather forecasts and Google Calendar in a single screen. It ships three home-screen widgets and a cover screen widget for Galaxy Z Flip so you can glance at the weather for your current location alongside upcoming events, and you can also check the weather for your favorite places in the app.
 
 ### Features
 
@@ -260,6 +262,7 @@ An Android app that shows weather forecasts and Google Calendar in a single scre
   - Mini (2x1): compact weather
   - Small (2x2): weather only
   - Medium (4x2): weather + calendar
+- **Cover screen widget**: weather and events within the next 30 days (up to 10) on the Galaxy Z Flip cover screen (Flex Window) (tested on Galaxy Z Flip7 / One UI 8.5)
 - **Location**: GPS-based current location + favorite places registered via Google Places search
 
 ### Tech stack

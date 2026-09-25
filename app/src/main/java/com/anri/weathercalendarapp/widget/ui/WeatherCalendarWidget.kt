@@ -157,8 +157,9 @@ private fun MediumWidgetContent(
     }
 }
 
+// WeatherSection / CalendarSection はカバー画面ウィジェット（WeatherCalendarCoverWidget）でも使用する
 @Composable
-private fun ColumnScope.WeatherSection(state: WidgetWeatherState, weatherBitmap: Bitmap?, primaryColorProvider: ColorProvider) {
+internal fun ColumnScope.WeatherSection(state: WidgetWeatherState, weatherBitmap: Bitmap?, primaryColorProvider: ColorProvider) {
     when (state) {
         is WidgetWeatherState.LocationDisabled,
         is WidgetWeatherState.NoData -> {
@@ -275,8 +276,12 @@ private fun ColumnScope.WeatherSection(state: WidgetWeatherState, weatherBitmap:
     }
 }
 
+/**
+ * splitIntoTwoColumns = true のとき、予定を2列（左列に最大5件、右列に残りの最大5件）で表示する（カバー画面ウィジェット用）。
+ * false（中ウィジェット）のときは1列で最大7件を表示する。
+ */
 @Composable
-private fun CalendarSection(state: WidgetCalendarState, primaryColorProvider: ColorProvider, onSurfaceVariantColorProvider: ColorProvider, noEventsText: String, fetchFailedText: String, calendarTitleText: String) {
+internal fun CalendarSection(state: WidgetCalendarState, primaryColorProvider: ColorProvider, onSurfaceVariantColorProvider: ColorProvider, noEventsText: String, fetchFailedText: String, calendarTitleText: String, splitIntoTwoColumns: Boolean = false) {
     // NotAuthorized 時はタイトルを非描画にして、天気側のエラー表示と垂直位置を揃える
     if (state !is WidgetCalendarState.NotAuthorized) {
         Text(
@@ -322,11 +327,34 @@ private fun CalendarSection(state: WidgetCalendarState, primaryColorProvider: Co
         }
 
         is WidgetCalendarState.HasEvents -> {
-            Column(
-                modifier = GlanceModifier.fillMaxSize()
-            ) {
-                state.events.take(7).forEach { event ->
-                    EventRow(event, onSurfaceVariantColorProvider)
+            if (splitIntoTwoColumns) {
+                val events = state.events.take(10)
+                // 両列を同じ幅にし、列間の余白を左右の列に等分することで、列の境界をウィジェット幅の中央に置く
+                Row(
+                    modifier = GlanceModifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = GlanceModifier.defaultWeight().padding(end = 6.dp)
+                    ) {
+                        events.take(5).forEach { event ->
+                            EventRow(event, onSurfaceVariantColorProvider)
+                        }
+                    }
+                    Column(
+                        modifier = GlanceModifier.defaultWeight().padding(start = 6.dp)
+                    ) {
+                        events.drop(5).forEach { event ->
+                            EventRow(event, onSurfaceVariantColorProvider)
+                        }
+                    }
+                }
+            } else {
+                Column(
+                    modifier = GlanceModifier.fillMaxSize()
+                ) {
+                    state.events.take(7).forEach { event ->
+                        EventRow(event, onSurfaceVariantColorProvider)
+                    }
                 }
             }
         }

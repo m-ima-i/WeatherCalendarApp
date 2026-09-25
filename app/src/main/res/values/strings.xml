@@ -93,5 +93,6 @@
     <string name="widget_weather_mini_description">現在の天気をコンパクトに表示します</string>
     <string name="widget_weather_small_description">現在の天気情報を表示します</string>
     <string name="widget_weather_calendar_description">天気と30日以内の予定を表示します</string>
+    <string name="widget_weather_calendar_cover_description">カバー画面に天気と30日以内の予定を表示します</string>
 
 </resources>

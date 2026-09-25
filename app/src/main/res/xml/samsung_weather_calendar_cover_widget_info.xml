@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Samsung の AppWidgetProviderInfo メタデータ: display="sub_screen" でカバー画面（Flex Window）に表示する -->
+<samsung-appwidget-provider
+    display="sub_screen">
+</samsung-appwidget-provider>

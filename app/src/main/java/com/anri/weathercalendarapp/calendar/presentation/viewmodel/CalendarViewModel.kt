@@ -655,7 +655,7 @@ class CalendarViewModel @Inject constructor(
 
     /**
      * 影響を受けた日付の予定だけをカレンダーAPIから再取得し、UI events をマージ更新する。
-     * UI 反映後、events 全体から Local 保存分（今日から30日以内・最大7件）を保存する（Widget 更新も Repository 経由で連動）。
+     * UI 反映後、events 全体から Local 保存分（今日から30日以内・最大10件）を保存する（Widget 更新も Repository 経由で連動）。
      */
     private suspend fun reloadEventsForDates(dates: Set<LocalDate>, token: String) {
         val results = coroutineScope {

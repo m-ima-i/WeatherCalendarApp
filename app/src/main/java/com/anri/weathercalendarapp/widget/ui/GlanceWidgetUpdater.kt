@@ -1,6 +1,7 @@
 package com.anri.weathercalendarapp.widget.ui
 
 import android.content.Context
+import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.state.updateAppWidgetState
 import androidx.glance.appwidget.updateAll
@@ -27,9 +28,13 @@ class GlanceWidgetUpdater @Inject constructor(
         for (id in manager.getGlanceIds(WeatherCalendarWidget::class.java)) {
             updateAppWidgetState(context, id) { it[WidgetOpacityKey] = opacity }
         }
+        for (id in manager.getGlanceIds(WeatherCalendarCoverWidget::class.java)) {
+            updateAppWidgetState(context, id) { it[WidgetOpacityKey] = opacity }
+        }
         WeatherMiniWidget().updateAll(context)
         WeatherSmallWidget().updateAll(context)
         WeatherCalendarWidget().updateAll(context)
+        WeatherCalendarCoverWidget().updateAll(context)
     }
 
     override suspend fun updateCalendarWidget(opacity: Int) {
@@ -37,7 +42,11 @@ class GlanceWidgetUpdater @Inject constructor(
         for (id in manager.getGlanceIds(WeatherCalendarWidget::class.java)) {
             updateAppWidgetState(context, id) { it[WidgetOpacityKey] = opacity }
         }
+        for (id in manager.getGlanceIds(WeatherCalendarCoverWidget::class.java)) {
+            updateAppWidgetState(context, id) { it[WidgetOpacityKey] = opacity }
+        }
         WeatherCalendarWidget().updateAll(context)
+        WeatherCalendarCoverWidget().updateAll(context)
     }
 
     override suspend fun refreshCalendarWidget() {
@@ -47,19 +56,23 @@ class GlanceWidgetUpdater @Inject constructor(
         // - update(context, id) で session が dormant の場合に launcher 側の
         //   再描画スケジュールを即時要求する（状態 bump だけでは遅延するケースへの対処）。
         val manager = GlanceAppWidgetManager(context)
-        val ids = manager.getGlanceIds(WeatherCalendarWidget::class.java)
-        val widget = WeatherCalendarWidget()
-        ids.forEach { id ->
-            updateAppWidgetState(context, id) { prefs ->
-                prefs[WidgetRefreshVersionKey] = (prefs[WidgetRefreshVersionKey] ?: 0L) + 1L
-            }
-            widget.update(context, id)
-        }
+        bumpRefreshVersionAndUpdate(manager, WeatherCalendarWidget())
+        bumpRefreshVersionAndUpdate(manager, WeatherCalendarCoverWidget())
     }
 
     override suspend fun refreshWeatherWidgets() {
         WeatherMiniWidget().updateAll(context)
         WeatherSmallWidget().updateAll(context)
         WeatherCalendarWidget().updateAll(context)
+        WeatherCalendarCoverWidget().updateAll(context)
+    }
+
+    private suspend fun bumpRefreshVersionAndUpdate(manager: GlanceAppWidgetManager, widget: GlanceAppWidget) {
+        manager.getGlanceIds(widget.javaClass).forEach { id ->
+            updateAppWidgetState(context, id) { prefs ->
+                prefs[WidgetRefreshVersionKey] = (prefs[WidgetRefreshVersionKey] ?: 0L) + 1L
+            }
+            widget.update(context, id)
+        }
     }
 }
