@@ -93,6 +93,9 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
 
+    // okhttp
+    implementation(libs.okhttp)
+
 
 
     // hilt
@@ -108,9 +111,6 @@ dependencies {
 
     // data store
     implementation(libs.androidx.datastore.preferences)
-
-    // coil
-    implementation(libs.coil.compose)
 
     // splash screen api
     implementation(libs.androidx.core.splashscreen)
