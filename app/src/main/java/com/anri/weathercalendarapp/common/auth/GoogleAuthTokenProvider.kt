@@ -22,7 +22,7 @@ import javax.inject.Singleton
  * requestAccessToken の戻り値。
  * - Success: 新しい/有効なトークンを取得済み
  * - NeedsConsent: ユーザー同意が必要（連携解除/スコープ変更/初回）→ 再連携UI
- * - TransientFailure: ネットワーク/サービスエラー等の一時的失敗 → UI は変えない
+ * - TransientFailure: ネットワーク/サービスエラー等の一時的失敗 → 再連携UIは出さない（UI の扱いは呼び出し元で決める）
  */
 sealed class TokenResult {
     data class Success(val token: String) : TokenResult()

@@ -6,7 +6,7 @@
 
 ## 日本語
 
-天気予報と Google カレンダーを 1 画面で確認できる Android アプリ。ホーム画面ウィジェット 3 種類を提供し、現在地またはお気に入り地点の天気と直近の予定をひと目で把握できます。
+天気予報と Google カレンダーを 1 画面で確認できる Android アプリ。ホーム画面ウィジェット 3 種類で現在地の天気と直近の予定をひと目で把握でき、お気に入り地点の天気もアプリ内で確認できます。
 
 ### 主な機能
 
@@ -16,7 +16,7 @@
   - Mini (2x1): 天気コンパクト表示
   - Small (2x2): 天気のみ
   - Medium (4x2): 天気＋カレンダー
-- **位置情報**: GPS による現在地取得 + Google Places によるエイリアス地点登録
+- **位置情報**: GPS による現在地取得 + Google Places の地名検索によるお気に入り地点登録
 
 ### 技術スタック
 
@@ -27,22 +27,21 @@
 | アーキテクチャ | 6 層クリーンアーキテクチャ + MVVM |
 | DI | Hilt + KSP |
 | 非同期 | Kotlin Coroutines |
-| 通信 | Retrofit + Gson / kotlinx.serialization |
+| 通信 | Retrofit + Gson |
 | 永続化 | Room / DataStore Preferences |
-| Navigation | Navigation Compose |
-| 画像 | Coil |
+| Navigation | Navigation Compose（kotlinx.serialization による型安全なルート） |
 | 位置情報 | Google Play Services Location / Places API |
 | 認証 | Google Play Services Auth |
 | バックグラウンド | WorkManager |
 
 ### アーキテクチャ（6 層クリーンアーキテクチャ）
 
-各 feature (`weather` / `calendar` / `setting`) は以下の 6 層構造で実装されています:
+`weather` / `calendar` は以下の 6 層構造で実装されています（`widget` は domain / data / local / ui、`setting` は presentation / ui のみで構成し、処理は他の feature・common の UseCase を利用）:
 
 ```
 feature/
 ├── domain/         # ビジネスロジック（model / repository interface / usecase）
-├── data/           # データソース interface
+├── data/           # Repository 実装 / データソース interface
 ├── remote/         # API 通信（Retrofit interface / Hilt module / DataSource 実装）
 ├── local/          # ローカル永続化（Room DAO / DataStore / Entity）
 ├── presentation/   # UI 状態管理（ViewModel / UiState）
@@ -129,7 +128,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
 
 ## 한국어
 
-날씨 예보와 Google 캘린더를 한 화면에서 확인할 수 있는 Android 앱입니다. 3 가지 홈 화면 위젯을 제공하여 현재 위치 또는 즐겨찾기 지점의 날씨와 가까운 일정을 한눈에 파악할 수 있습니다.
+날씨 예보와 Google 캘린더를 한 화면에서 확인할 수 있는 Android 앱입니다. 3 가지 홈 화면 위젯으로 현재 위치의 날씨와 가까운 일정을 한눈에 파악할 수 있으며, 즐겨찾기 지점의 날씨도 앱에서 확인할 수 있습니다.
 
 ### 주요 기능
 
@@ -139,7 +138,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
   - Mini (2x1): 날씨 컴팩트 표시
   - Small (2x2): 날씨만 표시
   - Medium (4x2): 날씨 + 캘린더
-- **위치 정보**: GPS 기반 현재 위치 + Google Places 기반 별칭 지점 등록
+- **위치 정보**: GPS 기반 현재 위치 + Google Places 지명 검색을 통한 즐겨찾기 지점 등록
 
 ### 기술 스택
 
@@ -150,22 +149,21 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
 | 아키텍처 | 6 계층 클린 아키텍처 + MVVM |
 | DI | Hilt + KSP |
 | 비동기 | Kotlin Coroutines |
-| 네트워크 | Retrofit + Gson / kotlinx.serialization |
+| 네트워크 | Retrofit + Gson |
 | 영속성 | Room / DataStore Preferences |
-| Navigation | Navigation Compose |
-| 이미지 | Coil |
+| Navigation | Navigation Compose (kotlinx.serialization 기반 타입 세이프 라우트) |
 | 위치 | Google Play Services Location / Places API |
 | 인증 | Google Play Services Auth |
 | 백그라운드 | WorkManager |
 
 ### 아키텍처 (6 계층 클린 아키텍처)
 
-각 feature (`weather` / `calendar` / `setting`) 는 다음 6 계층 구조로 구현되어 있습니다:
+`weather` / `calendar` 는 다음 6 계층 구조로 구현되어 있습니다 (`widget` 은 domain / data / local / ui, `setting` 은 presentation / ui 만으로 구성되며 다른 feature · common 의 UseCase 를 사용):
 
 ```
 feature/
 ├── domain/         # 비즈니스 로직 (model / repository interface / usecase)
-├── data/           # 데이터 소스 interface
+├── data/           # Repository 구현 / 데이터 소스 interface
 ├── remote/         # API 통신 (Retrofit interface / Hilt module / DataSource 구현)
 ├── local/          # 로컬 영속화 (Room DAO / DataStore / Entity)
 ├── presentation/   # UI 상태 관리 (ViewModel / UiState)
@@ -252,7 +250,7 @@ keytool -list -v -keystore "$env:USERPROFILE\.android\debug.keystore" `
 
 ## English
 
-An Android app that shows weather forecasts and Google Calendar in a single screen. It ships three home-screen widgets so you can glance at the weather for your current location (or favorite places) alongside upcoming events.
+An Android app that shows weather forecasts and Google Calendar in a single screen. It ships three home-screen widgets so you can glance at the weather for your current location alongside upcoming events, and you can also check the weather for your favorite places in the app.
 
 ### Features
 
@@ -262,7 +260,7 @@ An Android app that shows weather forecasts and Google Calendar in a single scre
   - Mini (2x1): compact weather
   - Small (2x2): weather only
   - Medium (4x2): weather + calendar
-- **Location**: GPS-based current location + alias places via Google Places
+- **Location**: GPS-based current location + favorite places registered via Google Places search
 
 ### Tech stack
 
@@ -273,22 +271,21 @@ An Android app that shows weather forecasts and Google Calendar in a single scre
 | Architecture | 6-layer clean architecture + MVVM |
 | DI | Hilt + KSP |
 | Concurrency | Kotlin Coroutines |
-| Networking | Retrofit + Gson / kotlinx.serialization |
+| Networking | Retrofit + Gson |
 | Persistence | Room / DataStore Preferences |
-| Navigation | Navigation Compose |
-| Images | Coil |
+| Navigation | Navigation Compose (type-safe routes with kotlinx.serialization) |
 | Location | Google Play Services Location / Places API |
 | Auth | Google Play Services Auth |
 | Background | WorkManager |
 
 ### Architecture (6-layer clean architecture)
 
-Each feature (`weather` / `calendar` / `setting`) is structured into the following six layers:
+`weather` / `calendar` are structured into the following six layers (`widget` has domain / data / local / ui, and `setting` has only presentation / ui, using UseCases from other features and common):
 
 ```
 feature/
 ├── domain/         # business logic (model / repository interface / usecase)
-├── data/           # data source interfaces
+├── data/           # repository implementations / data source interfaces
 ├── remote/         # API access (Retrofit interfaces / Hilt module / DataSource impls)
 ├── local/          # local persistence (Room DAO / DataStore / entities)
 ├── presentation/   # UI state (ViewModel / UiState)

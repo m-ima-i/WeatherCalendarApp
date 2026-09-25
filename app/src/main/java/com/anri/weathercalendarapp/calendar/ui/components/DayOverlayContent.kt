@@ -190,7 +190,7 @@ private data class AddEventTrigger(
 )
 
 /**
- * イベントが指定日に該当するか判定（CalendarScreen の isEventOnDate と同じロジック）
+ * イベントが指定日に該当するか判定（終日イベントの end は排他的、時間指定イベントの end は包括的として扱う）
  */
 private fun isEventOnDate(event: CalendarEvent, date: LocalDate): Boolean {
     val startDate = parseEventLocalDate(event.start) ?: return false

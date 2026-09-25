@@ -56,7 +56,7 @@ class LocationTrackerImpl @Inject constructor(
             Priority.PRIORITY_BALANCED_POWER_ACCURACY
         }
 
-        // 精密な位置情報を能動的に取得（10秒でタイムアウト）
+        // 現在地を能動的に取得（精密な位置情報の権限があれば高精度、なければ省電力精度。10秒でタイムアウト）
         val cancellationTokenSource = CancellationTokenSource()
         return withTimeoutOrNull(10_000L) {
             suspendCancellableCoroutine { cont ->

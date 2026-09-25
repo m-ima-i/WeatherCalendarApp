@@ -11,7 +11,7 @@ data class WeatherUiState(
     // 現在地(地名)
     val currentAddress: Address = Address(),
 
-    // weather=null 時の失敗理由（null=未判定/初回ロード前）
+    // 失敗理由（weather=null 時は WeatherFailureContent、weather!=null 時は WeatherFailureBanner で表示。null=失敗なし・未判定）
     val failureType: WeatherFailureType? = null,
 
     // 天気APIを呼び出し中かどうか（weather=null + isLoading=true で Indicator 表示）

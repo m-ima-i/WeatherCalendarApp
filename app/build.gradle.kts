@@ -26,8 +26,6 @@ android {
         versionCode = 22
         versionName = "1.0.21"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
         val localPropertiesFile = rootProject.file("local.properties")
         val localProperties = Properties()
         if (localPropertiesFile.exists()) {
@@ -64,7 +62,8 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
-    // Android Lint は IncompatibleClassChangeError でクラッシュするため無効化
+    // 2026-03 に Android Lint が IncompatibleClassChangeError でクラッシュしたため、リリースビルド時の Lint 実行とエラー時のビルド中断を無効化
+    // （2026-09-25 時点の構成では lint タスクはクラッシュせず完走することを確認済み）
     lint {
         checkReleaseBuilds = false
         abortOnError = false
@@ -85,12 +84,7 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
     // gson
     implementation(libs.gson)

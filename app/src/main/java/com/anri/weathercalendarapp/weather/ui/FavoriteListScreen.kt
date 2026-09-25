@@ -164,7 +164,7 @@ private fun DraggableFavoriteItem(
         label = "scale"
     )
 
-    // 長押しタイムアウトを 200ms に短縮（システムデフォルト 500ms を上書き）
+    // 長押しタイムアウトを 200ms に短縮（システム既定値を上書き。AOSP の既定値は Android 12 以降 400ms）
     val baseViewConfig = LocalViewConfiguration.current
     val shortLongPressViewConfig = remember(baseViewConfig) {
         object : ViewConfiguration by baseViewConfig {

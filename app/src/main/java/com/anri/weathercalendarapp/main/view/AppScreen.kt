@@ -82,7 +82,7 @@ fun AppScreen(
         ).gpsResolver()
     }
 
-    // 起動プロセス: カレンダーAPIプロセスを発火する関数（認証成功後のリトライにも使用）
+    // 起動プロセス: カレンダーAPIプロセスを発火する関数（StartupEvent.RunCalendarProcess で使用）
     val runCalendarProcess: () -> Unit = {
         calendarViewModel.runCalendarProcess(
             onComplete = { mainViewModel.onCalendarProcessCompleted() }

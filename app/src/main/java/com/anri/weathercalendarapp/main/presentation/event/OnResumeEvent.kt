@@ -6,6 +6,6 @@ package com.anri.weathercalendarapp.main.presentation.event
  * Dialog 表示・認証要求・権限チェック等の UI 干渉は一切しない。
  */
 sealed class OnResumeEvent {
-    /** 天気API + カレンダーAPI を独立して実行（成功時のみUI更新、失敗時サイレント） */
+    /** 天気API・カレンダーAPI・お気に入り地点の天気取得を独立して実行（runWeatherApiOnly / runCalendarApiOnly / fetchAllFavoriteWeather） */
     data object RunApis : OnResumeEvent()
 }

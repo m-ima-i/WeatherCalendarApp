@@ -343,7 +343,7 @@ private fun WidgetOpacitySection(
 }
 
 /**
- * 中ウィジェット(WeatherSmallWidget 2x2)のプレビュー
+ * 小ウィジェット(WeatherSmallWidget 2x2)のプレビュー
  * SmallWidgetContent のレイアウト・配色を Compose Material3 で再現（フォントサイズは160dp枠に合わせて調整、表示値は固定）
  * サイズは160dp正方形（実ウィジェット2x2セルに相当）
  */

@@ -60,7 +60,7 @@ fun CalendarScreen(
     val hasEvents = uiState.events != null
     // 全画面失敗UIに遷移する条件:
     //  - 連携解除(API_UNAUTHORIZED): events 有無関係なく必ず全画面（再連携誘導）
-    //  - その他 failure: events 未取得時のみ全画面（取得済みなら HOME のバナーで通知し、当画面は月画面を維持）
+    //  - その他 failure: events 未取得時のみ全画面（取得済みなら当画面は月画面を維持し、失敗は HOME で通知）
     val showFullScreenFailure = failureType == CalendarFailureType.API_UNAUTHORIZED ||
             (failureType != null && !hasEvents)
 

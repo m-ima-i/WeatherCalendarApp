@@ -65,7 +65,7 @@
     <string name="weather_failure_banner_refresh_button">リフレッシュ</string>
     <string name="weather_failure_banner_settings_button">設定</string>
 
-    <!-- Toast: 失敗通知 -->
+    <!-- Toast: 失敗通知・完了通知 -->
     <string name="toast_calendar_failure">予定の取得に失敗しました</string>
     <string name="toast_calendar_quota_exceeded">クォータを超過しました</string>
     <string name="toast_holiday_failure">祝日の取得に失敗しました</string>
@@ -81,7 +81,7 @@
     <string name="dialog_logout_dismiss">いいえ</string>
 
     <!-- Dialog: 時間矛盾エラー -->
-    <string name="dialog_time_conflict_body">終了時間は開始時間より\n早い時間にしてください</string>
+    <string name="dialog_time_conflict_body">終了時間は開始時間より\n遅い時間にしてください</string>
     <string name="dialog_time_conflict_confirm">閉じる</string>
 
     <!-- Dialog: 予定削除 -->
@@ -92,6 +92,6 @@
     <!-- ウィジェット -->
     <string name="widget_weather_mini_description">現在の天気をコンパクトに表示します</string>
     <string name="widget_weather_small_description">現在の天気情報を表示します</string>
-    <string name="widget_weather_calendar_description">天気と今日の予定を表示します</string>
+    <string name="widget_weather_calendar_description">天気と30日以内の予定を表示します</string>
 
 </resources>

@@ -133,7 +133,7 @@ class MainViewModel @Inject constructor(
     /**
      * GPS Resolution の結果（MainActivity の gpsResolutionLauncher から）。
      * 許可・拒否いずれの場合も天気APIプロセスを再実行する。
-     * 2回目以降は gpsDialogShown=true により Dialog 経路をスキップして処理終了へ進む。
+     * 2回目以降は gpsEvaluated=true により Dialog 経路をスキップして処理終了へ進む。
      */
     fun onGpsResolutionResult(@Suppress("UNUSED_PARAMETER") granted: Boolean) {
         viewModelScope.launch {

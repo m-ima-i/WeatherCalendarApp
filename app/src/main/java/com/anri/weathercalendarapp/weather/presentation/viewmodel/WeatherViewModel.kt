@@ -52,7 +52,7 @@ class WeatherViewModel @Inject constructor(
     }
 
     /**
-     * 天気APIプロセス（Figma準拠 + 3フラグ管理）。
+     * 天気APIプロセス（Figma準拠 + 2フラグ管理: locationEvaluated / gpsEvaluated）。
      *
      * 分岐順:
      * 1. 位置情報権限チェック（locationEvaluated を true 化）
@@ -62,7 +62,8 @@ class WeatherViewModel @Inject constructor(
      * 2. GPSチェック（gpsEvaluated を true 化）
      *    - GPS OFF + 過去未評価 → onGpsRequired()
      *    - GPS OFF + 過去評価済 → onComplete()（処理終了）
-     *    - GPS ON → gpsEvaluated を消費して executeWeatherProcess()
+     *    - GPS ON + 権限OFF → failureType=LOCATION_PERMISSION_OFF で onComplete()（処理終了）
+     *    - GPS ON + 権限ON → gpsEvaluated を消費して executeWeatherProcess()
      */
     fun runWeatherProcess(
         onLocationPermissionRequired: () -> Unit = {},
@@ -82,7 +83,7 @@ class WeatherViewModel @Inject constructor(
                     onLocationPermissionRequired()
                     return@launch
                 }
-                // 既に過去 Dialog を出した: GPS チェックへ進む
+                // 過去に評価済み（Dialog は再表示しない）: GPS チェックへ進む
             }
 
             // === GPS分岐 ===

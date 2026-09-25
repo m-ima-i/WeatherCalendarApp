@@ -259,7 +259,7 @@ class FavoriteListViewModelTest {
     }
 
     @Test
-    fun `onSuggestionSelected異常系 - 登録失敗→Snackbar発火`() = runTest {
+    fun `onSuggestionSelected異常系 - 登録失敗→Toast発火`() = runTest {
         // Arrange
         val suggestion = PlaceSuggestion(
             placeId = "place_dup",

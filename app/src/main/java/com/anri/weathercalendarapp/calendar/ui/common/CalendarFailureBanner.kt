@@ -29,7 +29,8 @@ import com.anri.weathercalendarapp.R
 import com.anri.weathercalendarapp.common.view.CustomElevateCared
 
 /**
- * events!=null（前回取得済み）時のカレンダー失敗バナー。CalendarContent 上部に表示。
+ * 直近の予定（upcomingEvents）を取得済みの時のカレンダー失敗バナー（API_UNAUTHORIZED 以外）。
+ * HOME（AppMainScreen）の天気カード群の上部に表示。
  * - 文言: 「カレンダーの更新に失敗しました」（全 failure type 共通）
  * - 右側: リフレッシュアイコン（isLoading 中は回転）
  */

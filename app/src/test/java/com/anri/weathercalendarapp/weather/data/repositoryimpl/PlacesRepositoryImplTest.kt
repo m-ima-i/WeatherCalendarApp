@@ -45,9 +45,8 @@ class PlacesRepositoryImplTest {
     /**
      * AutocompletePredictionのモックを作成するヘルパー関数
      *
-     * getPrimaryText/getSecondaryText/getFullTextはSpannableStringを返すが、
-     * SpannableStringはAndroid FrameworkのfinalクラスなのでmockkStaticでモックする。
-     * ここではSpannableStringをmockkStaticで構築する。
+     * getPrimaryText/getSecondaryTextはSpannableStringを返すため、
+     * relaxedモックの戻り値に対する toString() をスタブして文字列を返す。
      */
     private fun createPredictionMock(
         placeIdValue: String,
@@ -104,7 +103,7 @@ class PlacesRepositoryImplTest {
         every { placesClient.findAutocompletePredictions(any<FindAutocompletePredictionsRequest>()) } returns task
         coEvery { task.await() } throws RuntimeException("API Error")
 
-        // Act: ViewModel側でtry-catchしてToastを発火させる前提のため、例外は呼び出し側に伝播する
+        // Act: ViewModel側でtry-catchして searchFailureType（PlaceFailureType）をセットする前提のため、例外は呼び出し側に伝播する
         repository.searchPlaces("東京")
     }
 

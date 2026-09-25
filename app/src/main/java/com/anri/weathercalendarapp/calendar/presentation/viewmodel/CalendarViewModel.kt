@@ -99,7 +99,7 @@ class CalendarViewModel @Inject constructor(
      * - accountEmail なし → isInitialized=true / isAuthorized=false / failureType=null（連携誘導UI）
      * - accountEmail あり → requestAccessToken() でトークン取得
      *   - NeedsConsent（連携解除/要同意）→ failureType=API_UNAUTHORIZED（再連携UI）
-     *   - TransientFailure（一時的失敗）→ failureType=API_UNAUTHORIZED（既存挙動踏襲）
+     *   - TransientFailure（一時的失敗）→ failureType=API_NETWORK_ERROR（リフレッシュボタン表示）
      *   - Success → カレンダーAPI（±12ヶ月分）。401 → トークン強制リフレッシュして1回リトライ
      */
     fun runCalendarProcess(
@@ -567,7 +567,7 @@ class CalendarViewModel @Inject constructor(
 
     /**
      * カレンダーUIを初期状態にリセット（ナビゲーションバーで他画面へ遷移した時に呼ばれる）。
-     * - 表示月/選択日を「現在月/今日」に戻す
+     * - 表示月を現在月に戻す
      * - 日付詳細オーバーレイを閉じる
      * - resetUiSignal を emit して CalendarScreen 側の Pager を初期ページへスナップさせる
      */
@@ -655,7 +655,7 @@ class CalendarViewModel @Inject constructor(
 
     /**
      * 影響を受けた日付の予定だけをカレンダーAPIから再取得し、UI events をマージ更新する。
-     * UI 反映後、events 全体を Local に保存する（Widget 更新も Repository 経由で連動）。
+     * UI 反映後、events 全体から Local 保存分（今日から30日以内・最大7件）を保存する（Widget 更新も Repository 経由で連動）。
      */
     private suspend fun reloadEventsForDates(dates: Set<LocalDate>, token: String) {
         val results = coroutineScope {

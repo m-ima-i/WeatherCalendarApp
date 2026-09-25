@@ -10,6 +10,6 @@ interface WeatherLocalDataSource {
     // Roomから地名キャッシュを取得する
     suspend fun getCachedAddress(): Address?
 
-    // Roomに天気と地名を保存する（地名は同時上書き、null可）
+    // Roomに天気と地名を保存する（地名は同時に上書き。null の場合は既存の地名を保持）
     suspend fun saveWeather(weather: Weather, address: Address?)
 }
